@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./index.css" />
+		<title>Bar Chart</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="wrapper__buttons">
+				<button
+					value="Target Enterprise Value"
+					id="ev_pro_pct"
+					class="custom-btn btn-5"
+				>
+					Target Enterprise Value
+				</button>
+			</div>
+			<div class="wrapper__buttons">
+				<button value="IPO Proceeds" id="ipo_proceeds" class="custom-btn btn-5">
+					IPO Proceeds
+				</button>
+			</div>
+			<div class="wrapper__buttons">
+				<button value="Redemption Rate" id="red_pct" class="custom-btn btn-5">
+					Redemption Rate
+				</button>
+			</div>
+		</div>
+		<div id="container"></div>
+
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<script src="./app.js"></script>
+	</body>
+</html>
