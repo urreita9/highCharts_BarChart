@@ -1,19 +1,41 @@
 const ev_pro_pct = document.getElementById("ev_pro_pct");
 const ipo_proceeds = document.getElementById("ipo_proceeds");
 const red_pct = document.getElementById("red_pct");
-let data = {
-	colorSlow: "#074b69",
-	colorMidSlow: "#0d7ea2",
-	colorMidFast: "#97d4ea",
-	colorFast: "#dd7533",
-	slow: 4.1758847,
+let data = [];
 
-	midSlow: 4.5487307,
-	midFast: 5.7110366,
-	fast: 7.107384,
+// First Chart on page load
+
+window.onload = () => {
+	data = [
+		{
+			name: "Slow",
+			y: 4.1758847,
+			color: "#074b69",
+		},
+		{ name: "Mid-Slow", y: 4.5487307, color: "#0d7ea2" },
+		{ name: "Mid-Fast", y: 5.7110366, color: "#97d4ea" },
+		{ name: "Fast", y: 7.107384, color: "#dd7533" },
+	];
+	const array = data.map((item) => item.y);
+	array.sort(function (a, b) {
+		return a - b;
+	});
+	//MEDIAN
+	const median = (array[1] + array[2]) / 2;
+	const medianRounded = (Math.round(median * 100) / 100).toFixed(2);
+
+	//Average
+	const average = (array[0] + array[1] + array[2] + array[3]) / 4;
+	const averageRounded = (Math.round(average * 100) / 100).toFixed(2);
+
+	initializeChart(
+		data,
+		"Target Enterprise Value",
+		medianRounded,
+		averageRounded
+	);
 };
-
-// ev_pro_pct.addEventListener('click', )
+//Charts on button click
 
 ev_pro_pct.addEventListener("click", (e) => {
 	data = [
@@ -37,9 +59,7 @@ ev_pro_pct.addEventListener("click", (e) => {
 	//Average
 	const average = (array[0] + array[1] + array[2] + array[3]) / 4;
 	const averageRounded = (Math.round(average * 100) / 100).toFixed(2);
-	console.log(medianRounded);
 
-	console.log(array);
 	initializeChart(data, e.target.value, medianRounded, averageRounded);
 });
 
@@ -65,9 +85,7 @@ ipo_proceeds.addEventListener("click", (e) => {
 	//Average
 	const average = (array[0] + array[1] + array[2] + array[3]) / 4;
 	const averageRounded = (Math.round(average * 100) / 100).toFixed(2);
-	console.log(medianRounded);
 
-	console.log(array);
 	initializeChart(data, e.target.value, medianRounded, averageRounded);
 });
 
@@ -93,9 +111,7 @@ red_pct.addEventListener("click", (e) => {
 	//Average
 	const average = (array[0] + array[1] + array[2] + array[3]) / 4;
 	const averageRounded = (Math.round(average * 100) / 100).toFixed(2);
-	console.log(medianRounded);
 
-	console.log(array);
 	initializeChart(data, e.target.value, medianRounded, averageRounded);
 });
 
@@ -147,13 +163,3 @@ function initializeChart(data, value, median, average) {
 		],
 	});
 }
-
-// data = [
-// 	{
-// 		slow: 4.1758847,
-// 		color: "#074b69",
-// 	},
-// 	{ midSlow: 4.5487307, color: "#0d7ea2" },
-// 	{ midFast: 5.7110366, color: "#97d4ea" },
-// 	{ fast: 7.107384, color: "#dd7533" },
-// ];
